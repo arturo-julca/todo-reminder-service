@@ -20,15 +20,15 @@ public class TodoReminderServiceApplication {
 		SpringApplication.run(TodoReminderServiceApplication.class, args);
 	}
 	
-	@Bean
-	CommandLineRunner init(ToDoRepository repository) {
-		return args -> {
-			repository.deleteAll();
-			LongStream.range(1, 11)
-					.mapToObj(i -> new ToDo(i, "ToDo " + i, LocalDateTime.now(), "contact" + i + "@email.com"))
-					.map(v -> repository.save(v))
-					.forEach(System.out::println);
-		};
-	}
+//	@Bean
+//	CommandLineRunner init(ToDoRepository repository) {
+//		return args -> {
+//			repository.deleteAll();
+//			LongStream.range(1, 11)
+//					.mapToObj(i -> new ToDo(i, "ToDo " + i, LocalDateTime.now(), "contact" + i + "@email.com"))
+//					.map(v -> repository.save(v))
+//					.forEach(System.out::println);
+//		};
+//	}
 
 }
