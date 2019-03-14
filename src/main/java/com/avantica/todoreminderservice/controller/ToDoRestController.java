@@ -17,7 +17,7 @@ import com.avantica.todoreminderservice.repository.ToDoRepository;
 
 
 @RestController
-@RequestMapping({"/todo"})
+@RequestMapping({"/"})
 public class ToDoRestController {
 
 	private ToDoRepository toDoRepository;
@@ -45,11 +45,12 @@ public class ToDoRestController {
     
     @PutMapping(value="/{id}")
     public ResponseEntity<ToDo> update(@PathVariable("id") long id,
-                                          @RequestBody ToDo contact){
+                                          @RequestBody ToDo todo){
       return toDoRepository.findById(id)
           .map(record -> {
-              record.setName(contact.getName());
-              record.setEmail(contact.getEmail());
+              record.setName(todo.getName());
+              record.setTime(todo.getTime());
+              record.setEmail(todo.getEmail());
               ToDo updated = toDoRepository.save(record);
               return ResponseEntity.ok().body(updated);
           }).orElse(ResponseEntity.notFound().build());
