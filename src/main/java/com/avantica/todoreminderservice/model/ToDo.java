@@ -23,12 +23,13 @@ public class ToDo {
 	public ToDo(){		
 	}
 	
-	public ToDo(Long id, String name, LocalDateTime time, String email) {
+	public ToDo(Long id, String name, LocalDateTime time, String email, String status) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.time = time;
 		this.email = email;
+		this.status = status;
 	}
 	public Long getId() {
 		return id;
@@ -66,4 +67,37 @@ public class ToDo {
 		return "ToDo [id=" + id + ", name=" + name + ", time=" + time + ", email=" + email + ", status=" + status + "]";
 	}
 	
+	public static class Builder {
+        private Long id;
+		private String name;
+        private LocalDateTime time;
+        private String email;
+        private String status;
+        
+        public Builder(){}
+        
+        public Builder setName(String name){
+        	this.name = name;
+        	return this;
+        }
+        
+        public Builder setTime(LocalDateTime time){
+        	this.time = time;
+        	return this;
+        }
+        
+        public Builder setEmail(String email){
+        	this.email = email;
+        	return this;
+        }
+        
+        public Builder setStatus(String status){
+        	this.status = status;
+        	return this;
+        }
+        
+        public ToDo build() {
+            return new ToDo(id, name, time, email, status);
+        }
+	}
 }
